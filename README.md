@@ -13,6 +13,8 @@
  * IDE：Visual Studio 2019
  *
  * If you want to experience the program, please double click the executive file in the same directory which is named: GPA Calculator.exe
+ * If there's no GPA Calculator.exe, you may have to use visual studio which have been installed C++ core package to open GPA Calculator.sln,
+ * compile the file, then you can start your experience.
  * Enjoy now !  
  *                                  Instructor: Honghong Yang 
  *                          by Zian Gu, Xufei Bai, Zhiyu Chen, Jingwei Xu
@@ -30,6 +32,7 @@ Welcome to use GPA Calculator !
 用户只需选择算法，然后输入课程名、百分制成绩和对应学分，程序将自动将百分制成绩换算为单科绩点并计算GPA。
 
 若要运行，请双击同目录下的可执行文件GPA Calculator.exe
+如果不存在GPA Calculator.exe，您需要使用已经安装并配置好C++核心功能包的visual studio来打开同目录下的GPA Calculator.sln文件，并编译运行，生成exe文件后即可体验。
 
 运行结果示例：
 

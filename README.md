@@ -15,13 +15,14 @@
  * If you want to experience the program, please double click the executive file in the same directory which is named: GPA Calculator.exe
  * Enjoy now !  
  *                                  Instructor: Honghong Yang 
- *		             by Zian Gu, Xufei Bai, Zhiyu Chen, Jingwei Xu
+ *                          by Zian Gu, Xufei Bai, Zhiyu Chen, Jingwei Xu
  *
- *                            https://github.com/GuZian/GPA-Calculator
- *			   	             08/12/2020
+ *                              https://github.com/GuZian/GPA-Calculator
+ *                                           08/12/2020
 **********************************************************************************************************************
 
-#GPA Calculator
+Welcome to use GPA Calculator !
+
 对于广大要出国留学的学生而言，GPA对于升学是一个非常重要的指标。此外在上海的大学中，期末考试成绩通常直接给出各科绩点和GPA。
 本人作为上海生源的学生，也作为准备出国留学的学生，大多数朋友都在上海读大学，在期末分享成绩时由于我校教务系统给出的是百分制成绩，
 并非绩点或GPA，也没有在页面换算，因此造成了诸多不便。趁大作业的机会，编写了这个GPA 计算器。

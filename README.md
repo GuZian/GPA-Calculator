@@ -1,8 +1,8 @@
 
 **********************************************************************************************************************
- #				        GPA Calculator v1.0
+ #				                                 GPA Calculator v1.0
  *
- *				             main.cpp
+ *				                                      main.cpp
  *
  *
  *
@@ -17,11 +17,11 @@
  *
  * If you want to experience the program, please double click the executive file in the same directory which is named: GPA Calculator.exe
  * Enjoy now !  
- *                                                          Instructor: Honghong Yang 
- *		            by Zian Gu, Xufei Bai, Zhiyu Chen, Jingwei Xu
+ *                                  Instructor: Honghong Yang 
+ *		                       by Zian Gu, Xufei Bai, Zhiyu Chen, Jingwei Xu
  *
- *                                           https://github.com/GuZian/GPA-Calculator
- *			   	         08/12/2020
+ *                            https://github.com/GuZian/GPA-Calculator
+ *			   	                                 08/12/2020
 **********************************************************************************************************************
 
 #GPA Calculator

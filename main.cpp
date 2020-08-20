@@ -3,7 +3,15 @@
  *
  *					   main.cpp
  *
- *			by Zian Gu, Xufei Bai, Zhiyu Chen, jingwei Xu
+ *
+ *
+ * This program can be used for calculating GPA in 4 algorithms. Including "Standard Weighted GPA Scale", "Standard 4.0 GPA Scale", "Canada 4.3 GPA Scale" and  "Shanghai Jiao Tong University 4.3 GPA Scale". Users only need to choose a GPA scale, and then input their scores in percentile and points accordingly. The program will calculate the GPA. Users can also save the report as txt format by input Y/y in the last question. Thank you for your use.
+ * The program is used for the final homework of C++ in SNNU.
+ *
+ *              Instructor: Honghong Yang 
+ *		 by Zian Gu, Xufei Bai, Zhiyu Chen, Jingwei Xu
+ *
+ *         https://github.com/GuZian/GPA-Calculator
  *					  08/12/2020
 ************************************************************************/
 
@@ -29,7 +37,6 @@ int main()
 	case 'q':cout << "\nThank you for your use!"; exit(0); break;//Quit
 	case '1':				//Standard Weighted GPA Scale (Use percentile)
 	{
-		
 		swgs.getData();
 		swgs.calculateStandardWeightedGPAScale();
 		//swgs.setScale("Standard Weighted GPA Scale (Use percentile)");
@@ -38,7 +45,6 @@ int main()
 	}break;
 	case '2':				//Standard 4.0 GPA Scale
 	{
-		
 		s4_0gs.getData();
 		s4_0gs.convertStandard4_0GPAScale();
 		s4_0gs.calculateUnweightedGPAScale();
@@ -48,7 +54,6 @@ int main()
 	}break;
 	case '3':				//Canada 4.3 GPA Scale
 	{
-		
 		c4_3gs.getData();
 		c4_3gs.convertCanada4_3GPAScale();
 		c4_3gs.calculateUnweightedGPAScale();
@@ -58,7 +63,6 @@ int main()
 	}break;
 	case '4':				//Shanghai Jiao Tong University 4.3 GPA Scale
 	{
-		
 		s4_3gs.getData();
 		s4_3gs.convertSJTU4_3GPAScale();
 		s4_3gs.calculateUnweightedGPAScale();

@@ -4,6 +4,7 @@
 /						   algorithm.h
 /
 /		  				   by Zian Gu
+/           https://github.com/GuZian/GPA-Calculator
 /					       08/12/2020
 ************************************************************************/
 #ifndef ALGORITHM_H

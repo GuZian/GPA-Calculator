@@ -3,7 +3,10 @@
 
 						 algorithm.cpp
 
-			 by Zian Gu, Xufei Bai, Zhiyu Chen, jingwei Xu
+                   Instructor: Honghong Yang
+			 by Zian Gu, Xufei Bai, Zhiyu Chen, Jingwei Xu
+
+              https://github.com/GuZian/GPA-Calculator
 						  08/12/2020
 ************************************************************************/
 

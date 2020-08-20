@@ -15,10 +15,10 @@
  * If you want to experience the program, please double click the executive file in the same directory which is named: GPA Calculator.exe
  * Enjoy now !  
  *                                  Instructor: Honghong Yang 
- *		                       by Zian Gu, Xufei Bai, Zhiyu Chen, Jingwei Xu
+ *		             by Zian Gu, Xufei Bai, Zhiyu Chen, Jingwei Xu
  *
  *                            https://github.com/GuZian/GPA-Calculator
- *			   	                                 08/12/2020
+ *			   	             08/12/2020
 **********************************************************************************************************************
 
 #GPA Calculator

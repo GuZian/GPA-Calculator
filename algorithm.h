@@ -28,7 +28,7 @@ protected:
 	unsigned long date;
 	static int numCourses;
 	float* percentiles;
-	float* GPs;
+	float* credits;
 	float* points;
 	std::string* courseName;
 	float GPAResult;

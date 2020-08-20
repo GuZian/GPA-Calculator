@@ -8,7 +8,7 @@
  * This program can be used for calculating GPA in 4 algorithms. Including "Standard Weighted GPA Scale", "Standard 4.0 GPA Scale", "Canada 4.3 GPA Scale" and  "Shanghai Jiao Tong University 4.3 GPA Scale". Users only need to choose a GPA scale, and then input their scores in percentile and points accordingly. The program will calculate the GPA. Users can also save the report as txt format by input Y/y in the last question. Thank you for your use.
  * The program is used for the final homework of C++ in SNNU.
  *
- *              Instructor: Honghong Yang 
+ *              Instructor: Honghong Yang
  *		 by Zian Gu, Xufei Bai, Zhiyu Chen, Jingwei Xu
  *
  *         https://github.com/GuZian/GPA-Calculator
@@ -29,12 +29,17 @@ int main()
 	standard4_0GPAScale s4_0gs;
 	Canada4_3GPAScale c4_3gs;
 	SJTU4_3GPAScale s4_3gs;
-	basicData* basic=NULL;
+	basicData* basic = NULL;
 	cout << "Confirmed your option: " << (option = guider()) << endl;
 	switch (option)
 	{
 	case 'Q':
-	case 'q':cout << "\nThank you for your use!"; exit(0); break;//Quit
+	case 'q':
+	{
+		cout << "\nThank you for your use!";
+		cin.get();
+		exit(0);
+	} break;//Quit
 	case '1':				//Standard Weighted GPA Scale (Use percentile)
 	{
 		swgs.getData();
@@ -85,6 +90,7 @@ int main()
 	else//只要不是Y/y，一律不保存
 	{
 		cout << "\nThank you for your use!" << endl;
+		cin.get();
 		exit(0);
 	}
 

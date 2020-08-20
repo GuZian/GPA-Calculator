@@ -3,10 +3,10 @@
 
 						 algorithm.cpp
 
-                   Instructor: Honghong Yang
+				   Instructor: Honghong Yang
 			 by Zian Gu, Xufei Bai, Zhiyu Chen, Jingwei Xu
 
-              https://github.com/GuZian/GPA-Calculator
+			  https://github.com/GuZian/GPA-Calculator
 						  08/12/2020
 ************************************************************************/
 
@@ -16,6 +16,8 @@
 #include <cmath>
 #include <iomanip>
 #include <fstream>
+#include <ctime>
+#pragma warning (disable:4996)
 
 using namespace std;
 
@@ -46,7 +48,7 @@ Canada4_3GPAScale::Canada4_3GPAScale()
 SJTU4_3GPAScale::SJTU4_3GPAScale()
 {
 	//cout << "SJTU4_3GPAScale" << endl;
-	scale= "Shanghai Jiao Tong University 4.3 GPA Scale";
+	scale = "Shanghai Jiao Tong University 4.3 GPA Scale";
 }
 
 /************************************************************************/
@@ -67,13 +69,11 @@ void basicData::setScale(string scaleName)
 void basicData::getData()
 {
 	cout << endl;
-	cout << "Date(YYYYMMDD): ";
-	cin >> date;
 	cout << "The total of courses: ";
 	cin >> numCourses;
 	courseName = new string[numCourses];
 	percentiles = new float[numCourses];
-	points = new float[numCourses];
+	credits = new float[numCourses];
 	cout << endl;
 	cin.get();//吸收回车
 	for (int i = 0; i < numCourses; i++)
@@ -93,8 +93,8 @@ void basicData::getData()
 				<< "Percentile #" << i + 1 << ": ";
 		}
 
-		cout << "Points #" << i + 1 << ": ";
-		while (!(cin >> points[i]) || points[i] < 0 || points[i]>5)
+		cout << "Credits #" << i + 1 << ": ";
+		while (!(cin >> credits[i]) || credits[i] < 0 || credits[i]>5)
 		{
 			cin.clear();
 			while (cin.get() != '\n')
@@ -102,7 +102,7 @@ void basicData::getData()
 				continue;
 			}
 			cout << "Wrong input! Please check your input!" << endl
-				<< "Points #" << i + 1 << ": ";
+				<< "credits #" << i + 1 << ": ";
 		}
 		cin.get();//吸收回车
 		cout << endl;
@@ -113,24 +113,29 @@ basicData::~basicData()
 {
 	delete[] courseName;
 	delete[] percentiles;
+	delete[] credits;
 	delete[] points;
-	delete[] GPs;
 }
 
 void basicData::showData() const
 {
+	time_t now = time(0);
+	tm* ltm = localtime(&now);
 	cout << "\n************************   Result   *************************\n\n";
 	cout << "Scale: " << scale << endl << endl;
-	cout << "Date: " << date << endl << endl;
-
+	cout << "Time: " << ltm->tm_hour << ":" << ltm->tm_min << ":" << ltm->tm_sec << ", "
+		<< 1 + ltm->tm_mon << "/" << ltm->tm_mday << "/" << 1900 + ltm->tm_year << endl << endl;
 	cout << setiosflags(ios::left)
 		<< setw(20) << "-Courses-"
-		<< setw(20) << "-Percentiles-" << endl;
+		<< setw(20) << "-Percentiles-"
+		<< setw(20) << "-Credits-" << endl;
+
 	for (int i = 0; i < numCourses; i++)
 	{
 		cout << setiosflags(ios::left)
 			<< setw(20) << courseName[i]
-			<< setw(20) << percentiles[i] << endl;
+			<< setw(20) << percentiles[i]
+			<< setw(20) << credits[i] << endl;
 	}
 
 	cout << endl << setprecision(3)
@@ -144,8 +149,8 @@ float basicData::calculateUnweightedGPAScale()
 	float sumGPxPoints = 0;
 	for (int i = 0; i < numCourses; i++)
 	{
-		sumPoints = sumPoints + points[i];
-		sumGPxPoints = sumGPxPoints + points[i] * GPs[i];
+		sumPoints = sumPoints + credits[i];
+		sumGPxPoints = sumGPxPoints + credits[i] * points[i];
 	}
 	GPAResult = sumGPxPoints / sumPoints;
 	return GPAResult;
@@ -153,19 +158,23 @@ float basicData::calculateUnweightedGPAScale()
 
 void basicData::saveFile(string fileName)
 {
+	time_t now = time(0);
+	tm* ltm = localtime(&now);
 	ofstream outFile(fileName.c_str());
 	outFile << "************************   Result   *************************\n\n";
 	outFile << "Scale: " << scale << endl << endl;
-	outFile << "Date: " << date << endl << endl;
-
+	outFile << "Time: " << ltm->tm_hour << ":" << ltm->tm_min << ":" << ltm->tm_sec << ", "
+		<< 1 + ltm->tm_mon << "/" << ltm->tm_mday << "/" << 1900 + ltm->tm_year << endl << endl;
 	outFile << setiosflags(ios::left)
 		<< setw(20) << "-Courses-"
-		<< setw(20) << "-Percentiles-" << endl;
+		<< setw(20) << "-Percentiles-"
+		<< setw(20) << "-Credits-" << endl;
 	for (int i = 0; i < numCourses; i++)
 	{
 		outFile << setiosflags(ios::left)
 			<< setw(20) << courseName[i]
-			<< setw(20) << percentiles[i] << endl;
+			<< setw(20) << percentiles[i]
+			<< setw(20) << credits[i] << endl;
 	}
 
 	outFile << endl << setprecision(3)
@@ -180,8 +189,8 @@ float standardWeightedGPAScale::calculateStandardWeightedGPAScale()
 	float sumPercentilexPoints = 0;
 	for (int i = 0; i < numCourses; i++)
 	{
-		sumPoints = sumPoints + points[i];
-		sumPercentilexPoints = sumPercentilexPoints + percentiles[i] * points[i];
+		sumPoints = sumPoints + credits[i];
+		sumPercentilexPoints = sumPercentilexPoints + percentiles[i] * credits[i];
 	}
 	GPAResult = (sumPercentilexPoints * 4) / (sumPoints * 100);
 	return GPAResult;
@@ -191,125 +200,125 @@ float standardWeightedGPAScale::calculateStandardWeightedGPAScale()
 /************************* Different Scales **************************/
 float* standard4_0GPAScale::convertStandard4_0GPAScale()
 {
-	GPs = new float[numCourses];
+	points = new float[numCourses];
 	for (int i = 0; i < numCourses; i++)
 	{
 		if (percentiles[i] >= 0 && percentiles[i] < 60)
 		{
-			GPs[i] = 0;
+			points[i] = 0;
 		}
 		else if (percentiles[i] >= 60 && percentiles[i] < 70)
 		{
-			GPs[i] = 1.0;
+			points[i] = 1.0;
 		}
 		else if (percentiles[i] >= 70 && percentiles[i] < 80)
 		{
-			GPs[i] = 2.0;
+			points[i] = 2.0;
 		}
 		else if (percentiles[i] >= 80 && percentiles[i] < 90)
 		{
-			GPs[i] = 3.0;
+			points[i] = 3.0;
 		}
 		else if (percentiles[i] >= 90 && percentiles[i] <= 100)
 		{
-			GPs[i] = 4.0;
+			points[i] = 4.0;
 		}
 	}
-	return GPs;
+	return points;
 }
 
 float* Canada4_3GPAScale::convertCanada4_3GPAScale()
 {
-	GPs = new float[numCourses];
+	points = new float[numCourses];
 	for (int i = 0; i < numCourses; i++)
 	{
 		if (percentiles[i] >= 0 && percentiles[i] < 60)
 		{
-			GPs[i] = 0;
+			points[i] = 0;
 		}
 		else if (percentiles[i] >= 60 && percentiles[i] < 65)
 		{
-			GPs[i] = 2.3;
+			points[i] = 2.3;
 		}
 		else if (percentiles[i] >= 65 && percentiles[i] < 70)
 		{
-			GPs[i] = 2.7;
+			points[i] = 2.7;
 		}
 		else if (percentiles[i] >= 70 && percentiles[i] < 75)
 		{
-			GPs[i] = 3.0;
+			points[i] = 3.0;
 		}
 		else if (percentiles[i] >= 75 && percentiles[i] < 80)
 		{
-			GPs[i] = 3.3;
+			points[i] = 3.3;
 		}
 		else if (percentiles[i] >= 80 && percentiles[i] < 85)
 		{
-			GPs[i] = 3.7;
+			points[i] = 3.7;
 		}
 		else if (percentiles[i] >= 85 && percentiles[i] < 90)
 		{
-			GPs[i] = 4.0;
+			points[i] = 4.0;
 		}
 		else if (percentiles[i] >= 90 && percentiles[i] <= 100)
 		{
-			GPs[i] = 4.3;
+			points[i] = 4.3;
 		}
 	}
-	return GPs;
+	return points;
 }
 
 float* SJTU4_3GPAScale::convertSJTU4_3GPAScale()
 {
-	GPs = new float[numCourses];
+	points = new float[numCourses];
 	for (int i = 0; i < numCourses; i++)
 	{
 		if (percentiles[i] >= 0 && percentiles[i] < 60)
 		{
-			GPs[i] = 0;
+			points[i] = 0;
 		}
 		else if (percentiles[i] >= 60 && percentiles[i] < 62)
 		{
-			GPs[i] = 1.0;
+			points[i] = 1.0;
 		}
 		else if (percentiles[i] >= 62 && percentiles[i] < 65)
 		{
-			GPs[i] = 1.7;
+			points[i] = 1.7;
 		}
 		else if (percentiles[i] >= 65 && percentiles[i] < 67)
 		{
-			GPs[i] = 2.0;
+			points[i] = 2.0;
 		}
 		else if (percentiles[i] >= 67 && percentiles[i] < 70)
 		{
-			GPs[i] = 2.3;
+			points[i] = 2.3;
 		}
 		else if (percentiles[i] >= 70 && percentiles[i] < 75)
 		{
-			GPs[i] = 2.7;
+			points[i] = 2.7;
 		}
 		else if (percentiles[i] >= 75 && percentiles[i] < 80)
 		{
-			GPs[i] = 3.0;
+			points[i] = 3.0;
 		}
 		else if (percentiles[i] >= 80 && percentiles[i] < 85)
 		{
-			GPs[i] = 3.3;
+			points[i] = 3.3;
 		}
 		else if (percentiles[i] >= 85 && percentiles[i] < 90)
 		{
-			GPs[i] = 3.7;
+			points[i] = 3.7;
 		}
 		else if (percentiles[i] >= 90 && percentiles[i] < 95)
 		{
-			GPs[i] = 4.0;
+			points[i] = 4.0;
 		}
 		else if (percentiles[i] >= 95 && percentiles[i] <= 100)
 		{
-			GPs[i] = 4.3;
+			points[i] = 4.3;
 		}
 	}
-	return GPs;
+	return points;
 }
 
 /************************************************************************/

@@ -1,8 +1,7 @@
-﻿  define.cpp
-  main.cpp
+﻿  main.cpp
   正在生成代码
-  0 of 195 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  1 of 197 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
   GPA Calculator.vcxproj -> C:\Users\gu573\Documents\GitHub\C++\GPA Calculator\x64\Release\GPA Calculator.exe

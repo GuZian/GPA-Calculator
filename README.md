@@ -1,10 +1,7 @@
 
 **********************************************************************************************************************
  *                                      GPA Calculator v1.0
- *
  *                                           main.cpp
- *
- *
  *
  * This program can be used for calculating GPA in 4 algorithms. Including "Standard Weighted GPA Scale", 
  * "Standard 4.0 GPA Scale", "Canada 4.3 GPA Scale" and  "Shanghai Jiao Tong University 4.3 GPA Scale". Users 
